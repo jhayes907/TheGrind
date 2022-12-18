@@ -50,9 +50,9 @@ wcwidth==0.2.5
 Werkzeug==2.2.2
 whitenoise==6.2.0
 zipp==3.10.0
-SECRET_KEY = 'django-insecure-tyf4lc!p+qy$r1j^=q-c8ha2gj1&hx-w_#cks)k#8^vmtd*^d$'
-export DB_NAME=the_grind
-export DB_USER=postgres
-export DB_USER_PASSWORD=1234Gotmusic!
-export DB_HOST=localhost
-export DB_PORT=5432
+# SECRET_KEY = 'django-insecure-tyf4lc!p+qy$r1j^=q-c8ha2gj1&hx-w_#cks)k#8^vmtd*^d$'
+# export DB_NAME=the_grind
+# export DB_USER=postgres
+# export DB_USER_PASSWORD=1234Gotmusic!
+# export DB_HOST=localhost
+# export DB_PORT=5432

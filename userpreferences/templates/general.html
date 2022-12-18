@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+  {% block content %}
+  <h3>This is the General settings page</h3>
+  <div class="container mt-3">
+  {% include 'partials/_messages.html' %}
+  <form method="post" action="{% url 'general' %}"></form>
+  {% csrf_token %}
+  <div class="input-group">
+    <select name="language" class="form-select" id="inputGroupSelect04">
+        {% if user_preferences.language %}
+
+        <option name="language" value="{{user_preferences.language}}">{{user_preferences.language}}</option>
+        {% endif %}
+      {% for language in languages %}
+
+     <option name="language" value="{{ language.name}} - {{ language.value}}"
+     >{{language.name}} - {{language.value}}</option>
+     {% endfor %} 
+    </select>
+    <input class="btn btn-outline-secondary" type="submit" value="Apply"></input>
+  </div>
+  {% endblock content %}
+</div>

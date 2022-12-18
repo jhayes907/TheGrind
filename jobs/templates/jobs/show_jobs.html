@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
+<div class="container">
+  {% block content %}
 
-{% block content %}
+  <h1>Jobs List</h1>
 
-<h1>Jobs List</h1>
-
-<ul class="list-group">
+  <ul class="list-group">
     <li class="list-group-item">Full stack engineer</li>
     <li class="list-group-item">Full stack engineer I</li>
     <li class="list-group-item">Full stack engineer II</li>
     <li class="list-group-item">Full stack engineer III</li>
-</ul>  
+  </ul>
 
-{% endblock %}
+  {% endblock %}
+</div>
