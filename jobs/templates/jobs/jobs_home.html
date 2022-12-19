@@ -1,8 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="container">
-  {% block content %} 
-  {% include 'partials/_messages.html' %}
-  <h1>Jobs home page</h1>
-  {% endblock content %}
+<h2>This is the Jobs Home Page</h2>
+<hr />
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'jobs-home'%}">Job Posts</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Completed Applications</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <a href="{% url 'add-jobs' %}" class="btn btn-primary">Add Job Post</a>
+  </div>
 </div>
+
+{% endblock content %}

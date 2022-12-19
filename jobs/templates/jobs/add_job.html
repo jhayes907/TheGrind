@@ -1,6 +1,110 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-{% block content %}
+<h2>This is the Add-Jobs page</h2>
+<hr />
+<div class="container mt-4">
+  
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'jobs-home'%}">Job Posts</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Completed Applications</a></li>
+    </ol>
+    </nav>
+      
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{% url 'add-jobs' %}">
+                {% include 'partials/_messages.html' %} {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Date of Post</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="date"
+                    
+                />
+                </div>
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="title"
+                    
+                />
+                </div>
+                <div class="form-group">
+                    <label for="">Location</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="location"
+                    
+                />
+                </div>
+                <div class="form-group">
+                    <label for="">Salary</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="title"
+                    
+                />
+                </div>
+                <div class="form-group">
+                    <label for="">Stack</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="stack"
+                    
+                />
+                </div>
+                <div class="form-group">
+                    <label for="">Content</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="content"
+                    
+                />
+                </div>\
+                <div class="form-group">
+                    <label for="">Response</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="response"
+                    
+                />
+                </div>
+                <div class="form-group">
+                    <label for="">Post Origin</label>
+                    <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    name="post_origin"
+                    
+                />
+                </div>
+                <div class="form-group">
+                    <label for="">Category</label>
+                    <select name="category">
+                        <option name="category"></option>
+                        <option name="category"></option>
+                        <option name="category"></option>
+                    </select>
+                </div>
+                <input
+                    type="submit"
+                    value="Submit"
+                    class="btn btn-primary btn-primary-sm"
+                />
+            </form>
+        </div>
+    </div>
+</div> 
 
-<h1>Add Job</h1>
-{% endblock  %}
+<a href="{% url 'add-jobs' %}" class="btn btn-primary">Add Job Post</a>
+
+{% endblock content %}

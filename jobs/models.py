@@ -7,10 +7,11 @@ from django.utils.timezone import now
 class Job(models.Model):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     date = models.DateTimeField(default=now)
-    name = models.CharField(max_length=30)
+    title = models.TextField(max_length=30, default=None)
     location = models.CharField(max_length=20)
     salary = models.IntegerField(null=True, blank=True)
     stack = models.TextField(max_length=150)
+    content = models.TextField(default=None)
     response = models.TextField(max_length=30)
     post_origin = models.CharField(max_length=20)
     category = models.CharField(max_length=255)
@@ -18,8 +19,8 @@ class Job(models.Model):
     def __str__(self):
         return self.category
 
-    #class Meta:
-    #    ordering: ['-date']
+    class Meta:
+       ordering = ['-date']
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

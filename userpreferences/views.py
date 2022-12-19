@@ -4,9 +4,11 @@ import json
 from django.conf import settings
 from .models import UserPreferences
 from django.contrib import messages
+
+# TODO: user_preferences not holding selected state. Need to chase down save functionality
+
 # Create your views here.
-
-
+# This is for changing a json file to display as list in dropdown selectors
 def general(request):
     language_data = []
     file_path = os.path.join(settings.BASE_DIR, 'languages.json')
@@ -24,19 +26,18 @@ def general(request):
     
     if request.method == 'GET':
 
-    # This is for changing a json file to display as list in dropdown selectors
         return render(request, 'general.html', {'languages': language_data, 'user_preferences': user_preferences})
     else:
         language = request.POST['language']
 
-        if exists:
+        if exists:  
             user_preferences.language = language
             user_preferences.save()
         else:
             UserPreferences.objects.create(user=request.user, language=language)
+# FIXME: success message not displaying
         messages.success(request, 'Changes saved successfully')
-
-        return render(request, 'generaL.html', {'languages': language_data, 'user_preferences': user_preferences})
+        return render(request, 'general.html', {'languages': language_data, 'user_preferences': user_preferences})
 
 
 def account(request):

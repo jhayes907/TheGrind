@@ -7,14 +7,14 @@
   <div class="position-sticky pt-3 sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/jobs-home">
+        <a class="nav-link active" aria-current="page" href="#">
           <span data-feather="home" class="align-text-bottom"></span>
-          Dashboard
+          Dashboard <span class="sr-only"></span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          {% comment %} <span data-feather="file" class="align-text-bottom"></span> {% endcomment %}
+        <a class="nav-link" href="{% url 'jobs-home' %}">
+          <span data-feather="file" class="align-text-bottom"></span>
           Job Posts
         </a>
       </li>

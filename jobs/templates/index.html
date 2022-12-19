@@ -1,5 +1,7 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %} {% block %}
 
- {% block content %}
-    <h1>This is the Home Page</h1>
- {% endblock content %}
+<div class="container mt-4">
+  {% include 'partials/_messages.html' %}
+  <h1>This is the Home Page</h1>
+</div>
+{% endblock %}

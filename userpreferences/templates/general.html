@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
-
+{% comment %} TODO: fix this issue with non persisting user_preferences.language state {% endcomment %}
   {% block content %}
   <h3>This is the General settings page</h3>
+    <hr/>
   <div class="container mt-3">
+    <h5>Prefered translation</h5>
   {% include 'partials/_messages.html' %}
   <form method="post" action="{% url 'general' %}"></form>
   {% csrf_token %}
@@ -11,7 +13,7 @@
     <select name="language" class="form-select" id="inputGroupSelect04">
         {% if user_preferences.language %}
 
-        <option name="language" value="{{user_preferences.language}}">{{user_preferences.language}}</option>
+        <option name="language" selected value="{{user_preferences.language}}">{{user_preferences.language}}</option>
         {% endif %}
       {% for language in languages %}
 
