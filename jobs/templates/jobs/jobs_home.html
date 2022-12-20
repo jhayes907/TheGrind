@@ -7,15 +7,120 @@
     <div class="col-md-10">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'jobs-home'%}">Job Posts</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Completed Applications</a></li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'jobs-home' %}">Job Posts</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Completed Applications
+          </li>
         </ol>
       </nav>
     </div>
   </div>
+
   <div class="col-md-3">
     <a href="{% url 'add-jobs' %}" class="btn btn-primary">Add Job Post</a>
   </div>
 </div>
 
-{% endblock content %}
+<div class="container">
+  {% include 'partials/_messages.html' %} {% comment %} {% if job.count %} {% endcomment %}
+
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <input type="text" class="form-control" id="searchField" placeholder="Search">
+
+        </input>
+      </div>
+    </div>
+  </div>
+  <table class=" table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>CompanyName</th>
+        <th>Title</th>
+        <th>Locations</th>
+        <th>Salary</th>
+        <th>Stack</th>
+        <th>Post Origin</th>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Content</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% comment %} <tr>
+        <td>companyName</td>
+        <td>title</td>
+        <td>locations</td>
+        <td>salary</td>
+        <td>stack</td>
+        <td>post_origin</td>
+        <td>date</td>
+        <td>Category</td>
+        <td>content</td>
+
+        <td>
+            <a 
+            href="{% url 'edit-job' jobPost.id %}" 
+            class="btn btn-secondary btn-sm">
+            Edit
+            </a>
+        </td>
+      </tr> {% endcomment %}
+
+      
+      {% for jobPost in page_obj %}
+      <tr>
+        <td>{{jobPost.companyName}}</td>
+        <td>{{jobPost.title}}</td>
+        <td>{{jobPost.locations}}</td>
+        <td>{{jobPost.salary}}</td>
+        <td>{{jobPost.stack}}</td>
+        <td>{{jobPost.post_origin}}</td>
+        <td>{{jobPost.date}}</td>
+        <td>{{jobPost.Category}}</td>
+        <td>{{jobPost.content}}</td>
+
+        <td>
+            <a 
+            href="{% url 'edit-job' job.id %}" 
+            class="btn btn-secondary btn-sm">
+            Edit
+            </a>
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  
+  <div class="pagination-container">
+    <div class="">
+      Showing page {{page_obj.number}} of {{page_obj.paginator.num_pages }}
+    </div>
+    
+    <ul class = "pagination align-right float-right mr-auto">
+
+      {% if page_obj.has_previous %}
+      <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href"?page=1">&laquo; 1</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+      {% endif %}
+      
+      {%if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+      {% endif %}
+    </ul>
+    {% comment %} {% endif %}  {% endcomment %}
+  </div>
+  
+<script src="{% static 'js/searchJobPosts.js' %}"></script>
+
+  {% endblock content %}
+  

@@ -3,17 +3,22 @@
 <h2>This is the Add-Jobs page</h2>
 <hr />
 <div class="container mt-4">
-  
-    <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'jobs-home' %}">Job Posts</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Completed Applications</li>
-    </ol>
-    </nav>
-      
+    <div class="row">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'jobs-home' %}">Job Posts</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Job Posts</li>
+                </ol>
+                </nav> 
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'delete-job' jobPost.id%}" class="btn btn-danger btn-sm">Delete Job</a>
+        </div>
+    </div>  
     <div class="card">
         <div class="card-body">
-            <form method="post" action="{% url 'add-jobs' %}">
+            <form method="post" action="{% url 'edit-job' jobPost.id %}">
                 {% include 'partials/_messages.html' %} {% csrf_token %}
                 
                 <div class="form-group">
@@ -92,9 +97,13 @@
                 <div class="list-group">
                     <label for="">Category</label>
                     <select class="form-control" name="category">
+                        <option selected name="category" value="{{ values.category }}">
+                        {{ values.category }}</option>
+
                      {% for category in categories %}
 
-                        <option name="category" value="{{ category.name }}">{{ category.name }}</option>
+                        <option name="category" value="{{ category.name }}">
+                        {{ category.name }}</option>
 
                      {% endfor %}
                     </select>
@@ -111,7 +120,7 @@
                 </div>
                 <input
                     type="submit"
-                    value="Submit"
+                    value="Update"
                     class="btn btn-primary btn-primary-sm"
                 />
             </form>
